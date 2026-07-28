@@ -1,8 +1,8 @@
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from huggingface_hub import HfApi
 
-load_dotenv()
+load_dotenv(find_dotenv())
 token, repo_id = os.getenv("HUGGINGFACE_TOKEN"), os.getenv("HF_REPO_ID", "FHJibon/BanglaLLM-7B")
 model_path = "Research/models/BanglaLLM-7B" if os.path.exists("Research/models/BanglaLLM-7B") else "Research/models"
 
