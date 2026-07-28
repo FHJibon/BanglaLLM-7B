@@ -1,14 +1,14 @@
+name: Bangla-LLM
+
 services:
-  bangla-llm:
+  Bangla-LLM:
+    image: bangla-llm:latest
     build:
       context: ..
       dockerfile: Deployments/Dockerfile
-    container_name: bangla-llm
+    container_name: Bangla-LLM
     ports:
-      - "8000:8000"
-    dns:
-      - 8.8.8.8
-      - 1.1.1.1
+      - "9000:9000"
     env_file:
       - ../.env
     restart: unless-stopped

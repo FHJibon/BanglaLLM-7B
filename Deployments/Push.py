@@ -4,8 +4,8 @@ from huggingface_hub import HfApi
 
 load_dotenv(find_dotenv())
 
-token = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACE_TOKEN")
-repo_id = os.getenv("HF_REPO_ID", "FHJibon/BanglaLLM-7B")
+token = os.getenv("HF_TOKEN")
+repo_id = os.getenv("HF_REPO_ID")
 model_path = "Research/models/BanglaLLM-7B" if os.path.exists("Research/models/BanglaLLM-7B") else "Research/models"
 
 print(f"Uploading '{model_path}' to https://huggingface.co/{repo_id}...")
