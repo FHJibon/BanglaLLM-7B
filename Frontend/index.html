@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BanglaLLM 7B</title>
-    <!-- Google Fonts -->
+    <title>Bangla LLM</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Custom Stylesheet -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <!-- Header Navigation -->
+<body>
     <header class="app-header">
         <div class="brand-badge">
-            <div class="brand-icon">🇧🇩</div>
-            <span class="brand-title">BanglaLLM 7B</span>
+            <span class="brand-title">Bangla LLM</span>
         </div>
         <div class="header-actions">
             <button class="btn-new-chat" onclick="startNewChat()">
@@ -26,30 +27,27 @@
             </button>
         </div>
     </header>
-
-    <!-- Main Viewport (Sidebar-free Centered Canvas) -->
     <main class="main-viewport">
         <div class="chat-container" id="chatMessages">
             <div class="msg-row ai-row">
-                <div class="avatar-badge avatar-ai">AI</div>
                 <div class="msg-body">
-                    আসসালামু আলাইকুম! আমি BanglaLLM। যেকোনো বিষয়ে আপনার প্রশ্ন বাংলায় করতে পারেন।
+                    আসসালামু আলাইকুম! যেকোনো বিষয়ে প্রশ্ন করতে পারেন।
                 </div>
             </div>
         </div>
-
-        <!-- Floating Input Dock -->
         <div class="input-dock">
             <div class="dock-card">
-                <input type="text" id="userInput" class="text-input" placeholder="BanglaLLM কে যেকোনো প্রশ্ন করুন..." onkeydown="handleKeyPress(event)">
+                <input type="text" id="userInput" class="text-input" placeholder="যেকোনো প্রশ্ন করুন..."
+                    onkeydown="handleKeyPress(event)">
                 <button class="send-trigger" onclick="sendMessage()" aria-label="Send">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="19" x2="12" y2="5"></line>
                         <polyline points="5 12 12 5 19 12"></polyline>
                     </svg>
                 </button>
             </div>
-            <div class="footer-caption">BanglaLLM 7B • Pure LLM Engine</div>
+            <div class="footer-caption">Bangla LLM • Conversational AI Assistant</div>
         </div>
     </main>
 
@@ -66,9 +64,8 @@
             const chatMessages = document.getElementById('chatMessages');
             chatMessages.innerHTML = `
                 <div class="msg-row ai-row">
-                    <div class="avatar-badge avatar-ai">AI</div>
                     <div class="msg-body">
-                        নতুন চ্যাট শুরু হয়েছে। কীভাবে আপনাকে সাহায্য করতে পারি?
+                        নতুন চ্যাট শুরু হয়েছে। কীভাবে সাহায্য করতে পারি?
                     </div>
                 </div>
             `;
@@ -82,7 +79,6 @@
             inputEl.value = '';
             const chatMessages = document.getElementById('chatMessages');
 
-            // 1. User Message Row
             const userRow = document.createElement('div');
             userRow.className = 'msg-row user-row';
             userRow.innerHTML = `
@@ -90,7 +86,6 @@
             `;
             chatMessages.appendChild(userRow);
 
-            // 2. AI Streaming Row
             const aiRow = document.createElement('div');
             aiRow.className = 'msg-row ai-row';
             const aiBody = document.createElement('div');
@@ -100,12 +95,10 @@
                     <span></span><span></span><span></span>
                 </div>
             `;
-            aiRow.innerHTML = `<div class="avatar-badge avatar-ai">AI</div>`;
             aiRow.appendChild(aiBody);
             chatMessages.appendChild(aiRow);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // 3. SSE Stream Execution
             try {
                 const response = await fetch(`${API_URL}/chat`, {
                     method: 'POST',
@@ -133,7 +126,6 @@
                                     chatMessages.scrollTop = chatMessages.scrollHeight;
                                 }
                             } catch (e) {
-                                // non-json stream line
                             }
                         }
                     }
@@ -144,4 +136,5 @@
         }
     </script>
 </body>
+
 </html>
