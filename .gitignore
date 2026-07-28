@@ -1,8 +1,20 @@
+# Models & Checkpoints
 Research/checkpoints/
 Research/models/
+unsloth_compiled_cache/
+
+# Environment Variables
 .env
+*.env
+**/.env
+.env*
+!.env.example
+
+# Python & Dependencies
 __pycache__/
+*.pyc
 venv/
 .venv/
+
+# Node & Frontend
 Frontend/node_modules/
-unsloth_compiled_cache/

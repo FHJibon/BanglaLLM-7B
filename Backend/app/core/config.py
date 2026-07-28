@@ -1,28 +1,17 @@
 import os
-from pydantic_settings import BaseSettings
+from dotenv import load_dotenv
 
-class Settings(BaseSettings):
-    PROJECT_NAME: str = "BanglaSupport-LLM API"
-    VERSION: str = "1.0.0"
-    API_V1_STR: str = "/api"
-    
-    # Storage & Model Paths (or HuggingFace Hub ID)
-    HF_MODEL_ID: str = os.getenv("HF_MODEL_ID", "FHJibon/BanglaLLM-7B")
-    GPU_MODEL_PATH: str = os.getenv("GPU_MODEL_PATH", "Research/models/BanglaLLM-7B")
-    CPU_MODEL_PATH: str = os.getenv("CPU_MODEL_PATH", "Research/models/banglallm-7b-q4_k_m.gguf")
-    DEVICE: str = os.getenv("DEVICE", "cpu")
-    
-    # Vector DB / RAG Settings
-    PINECONE_API_KEY: str = os.getenv("PINECONE_API_KEY", "")
-    PINECONE_ENVIRONMENT: str = os.getenv("PINECONE_ENVIRONMENT", "us-east-1")
-    PINECONE_INDEX_NAME: str = os.getenv("PINECONE_INDEX_NAME", "bangla-support-index")
-    EMBEDDING_MODEL: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-    
-    # CORS Origins
-    CORS_ORIGINS: list[str] = ["*"]
+load_dotenv()
 
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
+HF_TOKEN = os.getenv("HF_TOKEN")
+HF_MODEL_ID = os.getenv("HF_MODEL_ID")
+GPU_MODEL_PATH = "Research/models/BanglaLLM-7B"
+CPU_MODEL_PATH = "Research/models/banglallm-7b-q4_k_m.gguf"
+DEVICE = os.getenv("DEVICE").lower()
+USE_4BIT = os.getenv("USE_4BIT", "true").lower() in ("true", "1", "yes")
 
-settings = Settings()
+MAX_NEW_TOKENS = 1024
+TEMPERATURE = 0.5
+TOP_P = 0.9
+N_CTX = 2048
+N_THREADS = 4

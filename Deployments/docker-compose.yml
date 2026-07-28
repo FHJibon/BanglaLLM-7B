@@ -1,13 +1,14 @@
-version: '3.8'
-
 services:
-  banglallm-backend:
+  bangla-llm:
     build:
       context: ..
       dockerfile: Deployments/Dockerfile
-    container_name: banglallm_api
+    container_name: bangla-llm
     ports:
       - "8000:8000"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     env_file:
-      - ../Backend/.env
+      - ../.env
     restart: unless-stopped
